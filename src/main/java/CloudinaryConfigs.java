@@ -7,8 +7,8 @@ import java.util.Map;
 
 @SuppressWarnings("rawtypes")
 public final class CloudinaryConfigs {
-    static final List<Map> configs = new ArrayList<Map>(){{
-         add(generateConfig("belalhamdy","222965862679467","4Umi23WOzm72bAMMJxPYac2rBZk"));
+    static final List<Map> configs = new ArrayList<>() {{
+        add(generateConfig("belalhamdy", "222965862679467", "4Umi23WOzm72bAMMJxPYac2rBZk"));
     }};
     static int currConfig = 0;
     private static Map generateConfig(String cloud_name, String api_key,String api_secret ){

@@ -18,6 +18,8 @@ public class Main {
         for (Object entry : uploadResult.entrySet()) {
             System.out.println(entry);
         }
-
+        String sampleExcel = "";
+        String outputPath = "";
+        String batchPath = "";
     }
 }
