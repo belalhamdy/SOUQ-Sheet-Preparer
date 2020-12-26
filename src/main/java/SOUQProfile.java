@@ -2,6 +2,7 @@ import java.util.Map;
 
 public class SOUQProfile extends Profile {
     Map<String, Double> screenSizesDictionary;
+    Map<String,String> compatibleBrandNames;
     private final double defaultScreenSize = 0.0; // TODO: update this value
     private int numberOfDefaultScreenSizeUsed; // Print it to validate that you used the whole dictionary
 
@@ -9,14 +10,37 @@ public class SOUQProfile extends Profile {
     public SOUQProfile(String batchPath, String sampleExcel, String outputPath, Map<String, Double> screenSizesDictionary) {
         super(batchPath, sampleExcel, outputPath);
         this.screenSizesDictionary = screenSizesDictionary;
+        constructCompatibleBrandNames();
     }
 
     @Override
     public void run() {
         numberOfDefaultScreenSizeUsed = 0;
     }
+    private void constructCompatibleBrandNames(){
+        compatibleBrandNames.put("iphone","Apple");
+        compatibleBrandNames.put("realme","Oppo");
+        compatibleBrandNames.put("htc","HTC");
+
+        compatibleBrandNames.put("honor","Honor");
+        compatibleBrandNames.put("nokia","Nokia");
+        compatibleBrandNames.put("oppo","Oppo");
+        compatibleBrandNames.put("oneplus","OnePlus");
+        compatibleBrandNames.put("samsung","Samsung");
+        compatibleBrandNames.put("vivo","Vivo");
+        compatibleBrandNames.put("xiaomi","Xiaomi");
+        compatibleBrandNames.put("google","Google");
+        compatibleBrandNames.put("infinix","Infinix");
+        compatibleBrandNames.put("motorola","Motorola");
+        compatibleBrandNames.put("huawei","Huawei");
+    }
+    private String getCompatibleBrandName(String name) throws Exception {
+        String ret = compatibleBrandNames.get(name);
+        if(ret == null) throw new Exception("The brand " + name + " is not in the dictionary.");
+        return ret;
+    }
     private String getScreenSizeName(Double val) throws Exception {
-        if(val > 8.9) throw new Exception("Screen Size is very large please review it.");
+        if(val > 8.9) throw new Exception("Screen Size " + val +" is very large please review it.");
         else if(val >= 8) return "8 to 8.9 inches";
         else if(val >= 7) return "7 to 7.9 inches";
         else if(val >= 6) return "6 to 6.9 inches";
