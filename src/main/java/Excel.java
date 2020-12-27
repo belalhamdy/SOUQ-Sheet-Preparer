@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public class Excel {
@@ -35,7 +36,7 @@ public class Excel {
         ++currRow;
     }
 
-    public void fillCurrentRow(Map<Integer, String> map) {
+    private void fillCurrentRow(Map<Integer, String> map) {
         Row row = workbook.getSheet("File").getRow(currRow);
         for (Map.Entry<Integer, String> entry : map.entrySet()) {
             int colIdx = entry.getKey();
@@ -43,6 +44,11 @@ public class Excel {
             row.createCell(colIdx).setCellValue(value);
         }
         goToNextRow();
+    }
+    public void fillRows(List<Map<Integer,String>> mapList){
+        for (Map<Integer,String> curr : mapList){
+            fillCurrentRow(curr);
+        }
     }
 
 }

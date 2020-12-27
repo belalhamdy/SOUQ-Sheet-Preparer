@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("rawtypes")
 public class Dictionary {
     static String dictionaryPath = "";
     static FileWriter csvWriter;

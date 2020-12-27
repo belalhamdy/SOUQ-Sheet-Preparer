@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Map;
 
 public class SOUQProfile extends Profile {
@@ -59,5 +60,11 @@ public class SOUQProfile extends Profile {
             val = defaultScreenSize;
         }
         return getScreenSizeName(val);
+    }
+
+    // takes list of files and returns list every item there is a map for every column and its value
+    public List<Map<Integer,String>> getDataForRow(List<String> files){
+        // TODO: Core function
+        return null;
     }
 }
