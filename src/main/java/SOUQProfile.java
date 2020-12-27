@@ -17,6 +17,7 @@ public class SOUQProfile extends Profile {
     @Override
     public void run() {
         numberOfDefaultScreenSizeUsed = 0;
+        // TODO
     }
     private void constructCompatibleBrandNames(){
         compatibleBrandNames.put("iphone","Apple");
