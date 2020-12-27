@@ -63,7 +63,7 @@ public class SOUQProfile extends Profile {
     }
 
     // takes list of files and returns list every item there is a map for every column and its value
-    public List<Map<Integer,String>> getDataForRow(List<String> files){
+    private List<Map<Integer,String>> getDataForRow(List<String> files){
         // TODO: Core function
         return null;
     }
