@@ -14,4 +14,7 @@ public class FileUtils {
         Files.copy(toPath(source), toPath(destination), StandardCopyOption.REPLACE_EXISTING);
         return destination;
     }
+    public static Path[] getAllFiles(String directory) throws IOException {
+        return Files.walk(Paths.get(directory)).filter(Files::isRegularFile).toArray(Path[]::new);
+    }
 }

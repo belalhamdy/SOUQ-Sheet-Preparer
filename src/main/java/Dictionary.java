@@ -6,8 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("rawtypes")
+/*
+Saves:
+original filename , secure_url, cloudName
+ */
 public class Dictionary {
-    static String dictionaryPath = "";
+    static String dictionaryPath = "Dictionary.csv";
     static FileWriter csvWriter;
     static Map<String, String> dictionary;
     static final int fileNameIdx = 0, linkIdx = 1;
@@ -31,13 +35,13 @@ public class Dictionary {
         csvReader.close();
     }
     public static void add(Map uploadResult,String cloudName) throws IOException {
-        String name = uploadResult.get("original_filename").toString();
+        String name = uploadResult.get("original_filename").toString() + "." + uploadResult.get("format");
         String url = uploadResult.get("secure_url").toString();
         dictionary.put(name,url);
 
         csvWriter.append(name).append(",").append(url).append(",").append(cloudName).append("\n");
     }
-    public static void saveDictionary() throws IOException {
+    public static void closeAndSave() throws IOException {
         csvWriter.flush();
         csvWriter.close();
     }
