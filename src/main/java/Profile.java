@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public abstract class Profile {
     String batchPath, sampleExcel, outputPath;
 
@@ -7,5 +9,5 @@ public abstract class Profile {
         this.outputPath = outputPath;
     }
 
-    public abstract void run();
+    public abstract void run() throws Exception;
 }

@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,8 +15,15 @@ public class SOUQProfile extends Profile {
     }
 
     @Override
-    public void run() {
-        // TODO
+    public void run() throws Exception {
+        List<String> directories = FileUtils.getDirectories(batchPath);
+        Excel excel;
+        for (String dir : directories) {
+            // TODO: fill this data
+            excel = new Excel("", "", "", "", 1);
+            excel.fillRows(getDataDirectory(FileUtils.getFiles(dir)));
+            excel.saveAndClose();
+        }
     }
 
 
@@ -76,6 +84,7 @@ public class SOUQProfile extends Profile {
             // TODO: place images here (PACKAGE URL)
             // TODO: Update in TSV the package links
             String images = "PACKAGE" + "\n" + Dictionary.getUrl(curr) + "\n" + Dictionary.getUrl(secondFileName) + "\n" + skin.getName() + "\n";
+
             Map<Integer, String> rowData = new HashMap<>() {{
                 put(0, "517"); // Id type item
                 put(2, skin.getTitleEN() + " " + name); // Product Title #6

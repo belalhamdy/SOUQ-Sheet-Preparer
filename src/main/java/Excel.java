@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Excel {
-    Workbook workbook;
-    FileOutputStream fileOutputStream;
-    String sheetName;
-    int currRow;
+    private Workbook workbook;
+    private FileOutputStream fileOutputStream;
+    private final String sheetName;
+    private int currRow;
 
     public Excel(String profilePath, String directory, String filename, String sheetName, int startRow) throws IOException {
         String filePath = FileUtils.copyFile(profilePath, directory, filename);
@@ -37,7 +37,7 @@ public class Excel {
     }
 
     private void fillCurrentRow(Map<Integer, String> map) {
-        Row row = workbook.getSheet("File").getRow(currRow);
+        Row row = workbook.getSheet(sheetName).getRow(currRow);
         for (Map.Entry<Integer, String> entry : map.entrySet()) {
             int colIdx = entry.getKey();
             String value = entry.getValue();
