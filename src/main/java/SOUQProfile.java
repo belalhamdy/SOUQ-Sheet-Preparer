@@ -1,47 +1,27 @@
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class SOUQProfile extends Profile {
+    private static final String PSDelimiter = "-";
     Map<String, Double> screenSizesDictionary;
-    Map<String,String> compatibleBrandNames;
-    private final double defaultScreenSize = 0.0; // TODO: update this value
-    private int numberOfDefaultScreenSizeUsed; // Print it to validate that you used the whole dictionary
 
 
     public SOUQProfile(String batchPath, String sampleExcel, String outputPath, Map<String, Double> screenSizesDictionary) {
         super(batchPath, sampleExcel, outputPath);
         this.screenSizesDictionary = screenSizesDictionary;
-        constructCompatibleBrandNames();
     }
 
     @Override
     public void run() {
-        numberOfDefaultScreenSizeUsed = 0;
         // TODO
     }
-    private void constructCompatibleBrandNames(){
-        compatibleBrandNames.put("iphone","Apple");
-        compatibleBrandNames.put("realme","Oppo");
-        compatibleBrandNames.put("htc","HTC");
 
-        compatibleBrandNames.put("honor","Honor");
-        compatibleBrandNames.put("nokia","Nokia");
-        compatibleBrandNames.put("oppo","Oppo");
-        compatibleBrandNames.put("oneplus","OnePlus");
-        compatibleBrandNames.put("samsung","Samsung");
-        compatibleBrandNames.put("vivo","Vivo");
-        compatibleBrandNames.put("xiaomi","Xiaomi");
-        compatibleBrandNames.put("google","Google");
-        compatibleBrandNames.put("infinix","Infinix");
-        compatibleBrandNames.put("motorola","Motorola");
-        compatibleBrandNames.put("huawei","Huawei");
-    }
-    private String getCompatibleBrandName(String name) throws Exception {
-        String ret = compatibleBrandNames.get(name);
-        if(ret == null) throw new Exception("The brand " + name + " is not in the dictionary.");
-        return ret;
-    }
-    private String getScreenSizeName(Double val) throws Exception {
+
+    private String getScreenSizeName() {
+        return "6 to 6.9 inches";
+        /*
         if(val > 8.9) throw new Exception("Screen Size " + val +" is very large please review it.");
         else if(val >= 8) return "8 to 8.9 inches";
         else if(val >= 7) return "7 to 7.9 inches";
@@ -53,19 +33,78 @@ public class SOUQProfile extends Profile {
         else if(val >= 3.6) return "3.6 to 4 inches";
         else if(val >= 3.1) return "3.1 to 3.5 inches";
         else return "Up to 3 inches";
+         */
     }
-    private String getScreenSize(String phoneName) throws Exception {
-        Double val = screenSizesDictionary.get(phoneName);
-        if(val == null){
-            numberOfDefaultScreenSizeUsed++;
-            val = defaultScreenSize;
-        }
-        return getScreenSizeName(val);
+
+    private String getScreenSizeNameAR() {
+        return "6.9 انش";
+        /*
+        if(val > 8.9) throw new Exception("Screen Size " + val +" is very large please review it.");
+        else if(val >= 8) return "8 to 8.9 inches";
+        else if(val >= 7) return "7 to 7.9 inches";
+        else if(val >= 6) return "6 to 6.9 inches";
+        else if(val >= 5.6) return "5.6 to 6 inches";
+        else if(val >= 5.1) return "5.1 to 5.5 inches";
+        else if(val >= 4.6) return "4.6 to 5 inches";
+        else if(val >= 4.1) return "4.1 to 4.5 inches";
+        else if(val >= 3.6) return "3.6 to 4 inches";
+        else if(val >= 3.1) return "3.1 to 3.5 inches";
+        else return "Up to 3 inches";
+         */
     }
 
     // takes list of files and returns list every item there is a map for every column and its value
-    private List<Map<Integer,String>> getDataForRow(List<String> files){
-        // TODO: Core function
-        return null;
+    private List<Map<Integer, String>> getDataDirectory(List<String> files) throws Exception {
+        List<Map<Integer, String>> dataForDirectory = new ArrayList<>();
+        for (String curr : files) {
+            // curr : honor view 20-sv524gsp-v.jpg
+            String[] data = curr.split(PSDelimiter);
+
+            // work only on v files and deduct the h file
+            if (!data[data.length - 1].contains("v"))
+                continue;
+            StringBuilder secondFileNameBuilder = new StringBuilder();
+            for (int i = 0; i < data.length - 1; ++i)
+                secondFileNameBuilder.append(data[i]).append('-');
+            secondFileNameBuilder.append("h.jpg");
+
+            String secondFileName = secondFileNameBuilder.toString();
+
+            String name = data[0];
+            Brand brand = new Brand(data[0].split(" ")[0]);
+            Skin skin = MobileAndSkinData.skinsData.get(data[1]);
+            // TODO: place images here (PACKAGE URL)
+            // TODO: Update in TSV the package links
+            String images = "PACKAGE" + "\n" + Dictionary.getUrl(curr) + "\n" + Dictionary.getUrl(secondFileName) + "\n" + skin.getName() + "\n";
+            Map<Integer, String> rowData = new HashMap<>() {{
+                put(0, "517"); // Id type item
+                put(2, skin.getTitleEN() + " " + name); // Product Title #6
+                put(3, "OZO"); // Brand #7
+                put(4, skin.getDescriptionEN()); // Description #9
+                put(5, "N/A"); // Manufacturer Number #53
+                put(6, skin.getType()); // Type #5700
+                put(7, brand.getBrandName()); // Compatible Brands #5705
+                put(8, getScreenSizeName()); // Compatible Screen Size #6426
+                put(9, skin.getTitleAR()); // Product Title(AR) #100006
+                put(10, "اوزو"); // Brand(AR) #100007
+                put(11, skin.getDescriptionAR()); // Description(AR) #100009
+                put(12, skin.getTypeAR()); // Type(AR) #105700
+                put(13, brand.getBrandNameAR()); // Compatible Brands(AR) #105705
+                put(14, getScreenSizeNameAR()); // Compatible Screen Size(AR) #106426
+                put(15, "0"); // Are batteries needed to power the product or is this product a battery(AR) #106745
+                put(16, "0"); // Are batteries needed to power the product or is this product a battery #6745
+                put(17, "NO"); // Is this a Dangerous Good or a Hazardous Material, Substance or Waste that is regulated for transportation, storage, and/or disposal? #6746
+                put(18, "NO"); // Is this a Dangerous Good or a Hazardous Material, Substance or Waste that is regulated for transportation, storage, and/or disposal?(AR) #106746
+                put(20, images); // Images
+                put(23, "iqshop"); // Seller Username
+                put(25, "YES"); // Active
+                put(26, "99"); // Listing Price
+                put(27, "5"); // Stock Quantity
+                put(29, "C"); // Handling Time
+                put(72, "11111111111"); // External Product ID Type #6825
+            }};
+            dataForDirectory.add(rowData);
+        }
+        return dataForDirectory;
     }
 }

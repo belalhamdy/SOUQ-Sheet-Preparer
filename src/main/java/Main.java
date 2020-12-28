@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -22,13 +23,16 @@ public class Main {
         String outputPath = "";
         String batchPath = "S:\\work\\armor\\Skins Project\\Final\\Out\\Batch 5";
 
-
-        System.out.println(MobileAndSkinData.skinsData.get("se201wcp").getTitleAR());
-
         Logger.getRootLogger().setLevel(Level.INFO);
         BasicConfigurator.configure();
-        Uploader.UploadAll(batchPath); // for uploading batch
 
+        //Uploader.UploadAll(batchPath); // for uploading batch
+
+        List<String> files = FileUtils.getFiles("S:\\work\\armor\\Skins Project\\Final\\Out\\Batch 5\\honor view 20");
+
+        for (String curr : files){
+            System.out.println(curr);
+        }
 
     }
 }

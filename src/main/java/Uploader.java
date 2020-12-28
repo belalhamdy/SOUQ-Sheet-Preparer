@@ -79,7 +79,7 @@ public final class Uploader {
     public static void UploadAll(String batchPath){
         try {
             String batchName = new File(batchPath).getName();
-            Path[] allFiles = FileUtils.getAllFiles(batchPath);
+            Path[] allFiles = FileUtils.getAllFilesAndSubFiles(batchPath);
             setOptions(batchName);
             uploadAllAndSaveInDictionary(allFiles);
         }
