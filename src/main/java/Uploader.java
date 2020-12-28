@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings({"rawtypes", "unchecked"})
 public final class Uploader {
     static Cloudinary cloudinary;
     static Map<String, String> options = new HashMap<>();
