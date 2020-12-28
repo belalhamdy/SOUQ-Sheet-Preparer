@@ -16,6 +16,12 @@ import java.util.concurrent.TimeUnit;
 @SuppressWarnings("rawtypes")
 public class Main {
     public static void main(String[] args) {
+        String sampleExcel = "";
+        String outputPath = "";
+        String batchPath = "S:\\work\\armor\\Skins Project\\Final\\Out\\Batch 5";
+
+
+
         Logger.getRootLogger().setLevel(Level.INFO);
         BasicConfigurator.configure();
         try {
@@ -27,34 +33,13 @@ public class Main {
             return;
         }
 
-        String sampleExcel = "";
-        String outputPath = "";
-        String batchPath = "";
-        String batchName = "Batch 5"; // Don't forget to
-
-        try {
-            Path[] allFiles = FileUtils.getAllFiles(batchPath);
-            Uploader.setOptions(batchName);
-            Uploader.uploadAllAndSaveInDictionary(allFiles);
-        }
-        catch (Exception e){
-            try {
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-                Dictionary.closeAndSave();
-            } catch (IOException ioException) {
-                System.out.println("Error Cannot save the dictionary.");
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-                return;
-            }
-        }
+        Uploader.UploadAll(batchPath); // for uploading batch
 
 
     }
 }
 /*
-        for (Object entry : uploadResult.entrySet()) {
-            System.out.println(entry);
-        }
+for (Object entry : uploadResult.entrySet()) {
+    System.out.println(entry);
+}
  */

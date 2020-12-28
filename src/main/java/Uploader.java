@@ -2,6 +2,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import me.tongfei.progressbar.ProgressBar;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.Map;
 
 @SuppressWarnings("rawtypes")
 public final class Uploader {
-    public static Cloudinary cloudinary;
+    static Cloudinary cloudinary;
     static Map<String, String> options = new HashMap<>();
 
     static {
@@ -27,7 +28,7 @@ public final class Uploader {
         cloudinary = new Cloudinary(CloudinaryConfigs.getConfig());
     }
 
-    public static void setOptions(String folderName) throws Exception {
+    private static void setOptions(String folderName) throws Exception {
         try {
             Map res = Uploader.cloudinary.api().createFolder(folderName,ObjectUtils.emptyMap());
             if(res.get("success").equals("true")) throw new Exception();
@@ -42,7 +43,7 @@ public final class Uploader {
         return cloudinary.config.cloudName;
     }
 
-    public static Map<String, String> uploadImage(String path) throws IOException {
+    private static Map<String, String> uploadImage(String path) throws IOException {
         Map uploadResult = cloudinary.uploader().upload(path, options);
         // TODO: if it cannot upload call change config
         return uploadResult;
@@ -67,5 +68,24 @@ public final class Uploader {
             }
         }
         Dictionary.closeAndSave();
+    }
+    public static void UploadAll(String batchPath){
+        try {
+            String batchName = new File(batchPath).getName();
+            Path[] allFiles = FileUtils.getAllFiles(batchPath);
+            Uploader.setOptions(batchName);
+            Uploader.uploadAllAndSaveInDictionary(allFiles);
+        }
+        catch (Exception e){
+            try {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+                Dictionary.closeAndSave();
+            } catch (IOException ioException) {
+                System.out.println("Error Cannot save the dictionary.");
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
+        }
     }
 }
