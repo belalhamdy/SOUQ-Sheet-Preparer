@@ -1,3 +1,5 @@
+import me.tongfei.progressbar.ProgressBar;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,24 +8,25 @@ import java.util.Map;
 
 public class SOUQProfile extends Profile {
     private static final String PSDelimiter = "-";
-    Map<String, Double> screenSizesDictionary;
 
 
-    public SOUQProfile(String batchPath, String sampleExcel, String outputPath, Map<String, Double> screenSizesDictionary) {
-        super(batchPath, sampleExcel, outputPath);
-        this.screenSizesDictionary = screenSizesDictionary;
+    public SOUQProfile(String batchPath, String sampleExcelPath, String outputPath) {
+        super(batchPath, sampleExcelPath, outputPath);
     }
 
     @Override
     public void run() throws Exception {
         List<String> directories = FileUtils.getDirectories(batchPath);
         Excel excel;
-        for (String dir : directories) {
-            // TODO: fill this data
-            excel = new Excel("", "", "", "", 1);
-            excel.fillRows(getDataDirectory(FileUtils.getFiles(dir)));
-            excel.saveAndClose();
+        try (ProgressBar pb = new ProgressBar("Creating Files ", directories.size())) {
+            for (String dir : directories) {
+                excel = new Excel(sampleExcel, outputPath, dir, "File", 1);
+                excel.fillRows(getDataDirectory(FileUtils.getFiles(batchPath + "//" + dir)));
+                excel.saveAndClose();
+                pb.step();
+            }
         }
+
     }
 
 
@@ -65,7 +68,6 @@ public class SOUQProfile extends Profile {
     private List<Map<Integer, String>> getDataDirectory(List<String> files) throws Exception {
         List<Map<Integer, String>> dataForDirectory = new ArrayList<>();
         for (String curr : files) {
-            // curr : honor view 20-sv524gsp-v.jpg
             String[] data = curr.split(PSDelimiter);
 
             // work only on v files and deduct the h file
@@ -80,9 +82,12 @@ public class SOUQProfile extends Profile {
 
             String name = data[0];
             Brand brand = new Brand(data[0].split(" ")[0]);
+            // TODO: in the next batch check for name of sv524gsp in the TSV file in the first column (you may find the correct one inside SOUQ Excel folder)
             Skin skin = MobileAndSkinData.skinsData.get(data[1]);
             // TODO: place images here (PACKAGE URL)
             // TODO: Update in TSV the package links
+            String first = Dictionary.getUrl(curr);
+            String second = Dictionary.getUrl(secondFileName);
             String images = "PACKAGE" + "\n" + Dictionary.getUrl(curr) + "\n" + Dictionary.getUrl(secondFileName) + "\n" + skin.getName() + "\n";
 
             Map<Integer, String> rowData = new HashMap<>() {{

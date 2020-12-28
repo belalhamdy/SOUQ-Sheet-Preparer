@@ -23,7 +23,8 @@ public final class MobileAndSkinData {
         String row;
         while ((row = tsvReader.readLine()) != null) {
             String[] data = row.split(delimiter);
-            Skin curr = new Skin(data[1],data[2],data[3],data[4],data[5],data[6]);
+            // TODO: after placing images in TSV remove the quotes
+            Skin curr = new Skin(data[1],data[2],data[3],data[4],data[5],"data[6]");
             skinsData.put(data[0],curr);
         }
         tsvReader.close();

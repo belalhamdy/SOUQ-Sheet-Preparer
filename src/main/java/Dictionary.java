@@ -45,6 +45,7 @@ public class Dictionary {
         csvWriter.append(name).append(",").append(url).append(",").append(Uploader.getCloudName()).append("\n");
     }
     public static String getUrl(String fileName){
+        if(dictionary.getOrDefault(fileName,null) == null) System.out.println(fileName);
         return dictionary.getOrDefault(fileName,null);
     }
     public static void closeAndSave() throws IOException {

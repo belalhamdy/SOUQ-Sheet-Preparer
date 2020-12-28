@@ -19,8 +19,8 @@ public class Main {
     public static void main(String[] args) {
         // Do not forget to change every comma in the uploaded data with dot
 
-        String sampleExcel = "";
-        String outputPath = "";
+        String sampleExcel = "S:\\work\\armor\\Skins Project\\SOUQ Excel\\Sample.xlsx";
+        String outputPath = "S:\\work\\armor\\Skins Project\\Final\\Excel\\Batch 5";
         String batchPath = "S:\\work\\armor\\Skins Project\\Final\\Out\\Batch 5";
 
         Logger.getRootLogger().setLevel(Level.INFO);
@@ -28,10 +28,13 @@ public class Main {
 
         //Uploader.UploadAll(batchPath); // for uploading batch
 
-        List<String> files = FileUtils.getFiles("S:\\work\\armor\\Skins Project\\Final\\Out\\Batch 5\\honor view 20");
+        try {
+            SOUQProfile profile = new SOUQProfile(batchPath, sampleExcel, outputPath);
+            profile.run();
 
-        for (String curr : files){
-            System.out.println(curr);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
     }
@@ -40,4 +43,4 @@ public class Main {
 for (Object entry : uploadResult.entrySet()) {
     System.out.println(entry);
 }
- */
+*/

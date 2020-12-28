@@ -13,8 +13,8 @@ public class Excel {
     private final String sheetName;
     private int currRow;
 
-    public Excel(String profilePath, String directory, String filename, String sheetName, int startRow) throws IOException {
-        String filePath = FileUtils.copyFile(profilePath, directory, filename);
+    public Excel(String samplePath, String directory, String filename, String sheetName, int startRow) throws IOException {
+        String filePath = FileUtils.copyFile(samplePath, directory, filename);
         initXlsx(filePath);
         this.sheetName = sheetName;
         currRow = startRow; // first row is the header
@@ -22,9 +22,9 @@ public class Excel {
 
     private void initXlsx(String filePath) throws IOException {
         FileInputStream inputStream = new FileInputStream(filePath);
-        fileOutputStream = new FileOutputStream(filePath, false);
         workbook = WorkbookFactory.create(inputStream);
         inputStream.close();
+        fileOutputStream = new FileOutputStream(filePath, false);
     }
 
     public void saveAndClose() throws IOException {
@@ -37,7 +37,7 @@ public class Excel {
     }
 
     private void fillCurrentRow(Map<Integer, String> map) {
-        Row row = workbook.getSheet(sheetName).getRow(currRow);
+        Row row = workbook.getSheet(sheetName).createRow(currRow);
         for (Map.Entry<Integer, String> entry : map.entrySet()) {
             int colIdx = entry.getKey();
             String value = entry.getValue();

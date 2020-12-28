@@ -46,7 +46,7 @@ public final class Uploader {
 
     private static Map<String, String> uploadImage(String path) throws IOException {
         Map uploadResult = cloudinary.uploader().upload(path, options);
-        // TODO: if it cannot upload call change config
+        // if it cannot upload call change config
         return uploadResult;
     }
 
