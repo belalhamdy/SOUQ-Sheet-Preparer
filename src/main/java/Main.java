@@ -16,23 +16,17 @@ import java.util.concurrent.TimeUnit;
 @SuppressWarnings("rawtypes")
 public class Main {
     public static void main(String[] args) {
+        // Do not forget to change every comma in the uploaded data with dot
+
         String sampleExcel = "";
         String outputPath = "";
         String batchPath = "S:\\work\\armor\\Skins Project\\Final\\Out\\Batch 5";
 
 
+        System.out.println(MobileAndSkinData.skinsData.get("se201wcp").getTitleAR());
 
         Logger.getRootLogger().setLevel(Level.INFO);
         BasicConfigurator.configure();
-        try {
-            Dictionary.loadDictionary();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            System.out.println("Error Cannot load the dictionary.");
-            return;
-        }
-
         Uploader.UploadAll(batchPath); // for uploading batch
 
 

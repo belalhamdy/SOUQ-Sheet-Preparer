@@ -19,8 +19,11 @@ public class Dictionary {
     static {
         try {
             csvWriter = new FileWriter(dictionaryPath,true);
+            loadDictionary();
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
+            System.out.println("Error Cannot load the dictionary.");
         }
     }
 

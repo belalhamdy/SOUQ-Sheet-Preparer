@@ -2,6 +2,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import me.tongfei.progressbar.ProgressBar;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -61,8 +62,14 @@ public final class Uploader {
         // upload the files that are not uploaded before only
         try (ProgressBar pb = new ProgressBar("Uploading", upload.size())) {
             for (Path path : upload) {
-                Map uploadResult = uploadImage(path.toString());
-                Dictionary.add(uploadResult);
+                String fileName = path.getFileName().toString();
+                if(fileName.contains(",")){
+                    System.out.println("Cannot upload file " + fileName);
+                }
+                else {
+                    Map uploadResult = uploadImage(path.toString());
+                    Dictionary.add(uploadResult);
+                }
 
                 pb.step();
             }
@@ -73,14 +80,16 @@ public final class Uploader {
         try {
             String batchName = new File(batchPath).getName();
             Path[] allFiles = FileUtils.getAllFiles(batchPath);
-            Uploader.setOptions(batchName);
-            Uploader.uploadAllAndSaveInDictionary(allFiles);
+            setOptions(batchName);
+            uploadAllAndSaveInDictionary(allFiles);
         }
         catch (Exception e){
             try {
                 System.out.println(e.getMessage());
                 e.printStackTrace();
                 Dictionary.closeAndSave();
+                System.out.println("saved");
+                JOptionPane.showMessageDialog(null,"Error");
             } catch (IOException ioException) {
                 System.out.println("Error Cannot save the dictionary.");
                 System.out.println(e.getMessage());
