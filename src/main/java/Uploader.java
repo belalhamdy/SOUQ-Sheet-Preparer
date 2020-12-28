@@ -1,13 +1,17 @@
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import me.tongfei.progressbar.ProgressBar;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("rawtypes")
 public final class Uploader {
-    static Cloudinary cloudinary;
+    public static Cloudinary cloudinary;
     static Map<String, String> options = new HashMap<>();
 
     static {
@@ -23,16 +27,45 @@ public final class Uploader {
         cloudinary = new Cloudinary(CloudinaryConfigs.getConfig());
     }
 
-    public static void setOptions(String folderName) {
+    public static void setOptions(String folderName) throws Exception {
+        try {
+            Map res = Uploader.cloudinary.api().createFolder(folderName,ObjectUtils.emptyMap());
+            if(res.get("success").equals("true")) throw new Exception();
+        } catch (Exception e) {
+            throw new Exception("Cannot find or create the folder " + folderName);
+        }
         options.put("folder", folderName);
         options.put("use_filename", "true");
     }
-    public static String getCloudName(){
+
+    public static String getCloudName() {
         return cloudinary.config.cloudName;
     }
+
     public static Map<String, String> uploadImage(String path) throws IOException {
         Map uploadResult = cloudinary.uploader().upload(path, options);
         // TODO: if it cannot upload call change config
         return uploadResult;
+    }
+
+    public static void uploadAllAndSaveInDictionary(Path[] paths) throws IOException {
+        // get the files that are not uploaded only
+        List<Path> upload = new ArrayList<>();
+        for (Path path : paths) {
+            if (Dictionary.getUrl(path.getFileName().toString()) == null)
+                upload.add(path);
+        }
+        if(upload.size() == 0)
+            return;
+        // upload the files that are not uploaded before only
+        try (ProgressBar pb = new ProgressBar("Uploading", upload.size())) {
+            for (Path path : upload) {
+                Map uploadResult = uploadImage(path.toString());
+                Dictionary.add(uploadResult);
+
+                pb.step();
+            }
+        }
+        Dictionary.closeAndSave();
     }
 }

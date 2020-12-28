@@ -34,15 +34,22 @@ public class Dictionary {
         }
         csvReader.close();
     }
-    public static void add(Map uploadResult,String cloudName) throws IOException {
+    public static void add(Map uploadResult) throws IOException {
         String name = uploadResult.get("original_filename").toString() + "." + uploadResult.get("format");
         String url = uploadResult.get("secure_url").toString();
         dictionary.put(name,url);
 
-        csvWriter.append(name).append(",").append(url).append(",").append(cloudName).append("\n");
+        csvWriter.append(name).append(",").append(url).append(",").append(Uploader.getCloudName()).append("\n");
+    }
+    public static String getUrl(String fileName){
+        return dictionary.getOrDefault(fileName,null);
     }
     public static void closeAndSave() throws IOException {
         csvWriter.flush();
         csvWriter.close();
+    }
+    public static void save() throws IOException {
+        closeAndSave();
+        loadDictionary();
     }
 }
