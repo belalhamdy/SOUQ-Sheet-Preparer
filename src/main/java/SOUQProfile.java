@@ -1,6 +1,5 @@
 import me.tongfei.progressbar.ProgressBar;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,6 +65,7 @@ public class SOUQProfile extends Profile {
 
     // takes list of files and returns list every item there is a map for every column and its value
     private List<Map<Integer, String>> getDataDirectory(List<String> files) throws Exception {
+        final String HOW_TO_URL = "https://res.cloudinary.com/belalhamdy/image/upload/v1609231459/Constants/How_to_jjvtkw.jpg";
         List<Map<Integer, String>> dataForDirectory = new ArrayList<>();
         for (String curr : files) {
             String[] data = curr.split(PSDelimiter);
@@ -82,13 +82,9 @@ public class SOUQProfile extends Profile {
 
             String name = data[0];
             Brand brand = new Brand(data[0].split(" ")[0]);
-            // TODO: in the next batch check for name of sv524gsp in the TSV file in the first column (you may find the correct one inside SOUQ Excel folder)
             Skin skin = MobileAndSkinData.skinsData.get(data[1]);
-            // TODO: place images here (PACKAGE URL)
-            // TODO: Update in TSV the package links
-            String first = Dictionary.getUrl(curr);
-            String second = Dictionary.getUrl(secondFileName);
-            String images = "PACKAGE" + "\n" + Dictionary.getUrl(curr) + "\n" + Dictionary.getUrl(secondFileName) + "\n" + skin.getName() + "\n";
+
+            String images = skin.getURL() + "\n" + Dictionary.getUrl(secondFileName) + "\n" + Dictionary.getUrl(curr) + "\n"  + HOW_TO_URL + "\n";
 
             Map<Integer, String> rowData = new HashMap<>() {{
                 put(0, "517"); // Id type item

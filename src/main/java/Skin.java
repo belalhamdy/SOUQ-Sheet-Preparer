@@ -1,11 +1,14 @@
 public class Skin {
-    private String name;
+    private final String name;
 
 
-    private String URL;
-    private String titleEN,titleAR;
-    private String descriptionEN,descriptionAR;
-    private String type,typeAR;
+    private final String URL;
+    private final String titleEN;
+    private final String titleAR;
+    private final String descriptionEN;
+    private final String descriptionAR;
+    private final String type;
+    private final String typeAR;
 
     public String getType() {
         return type;
@@ -27,10 +30,6 @@ public class Skin {
         this.URL = URL;
         this.type = "Mobile Phone Skins";
         this.typeAR = "ملصقات و اغطية حماية للهواتف المحمولة";
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getTitleEN() {

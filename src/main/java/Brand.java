@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Brand {
-    private static Map<String,String> namesEN = new HashMap<>(){{
+    private static final Map<String,String> namesEN = new HashMap<>(){{
         put("iphone", "Apple");
         put("realme", "Oppo");
         put("htc", "HTC");
@@ -19,8 +19,7 @@ public class Brand {
         put("motorola", "Motorola");
         put("huawei", "Huawei");
     }};
-    // TODO: revise
-    private static Map<String,String> namesAR = new HashMap<>(){{
+    private static final Map<String,String> namesAR = new HashMap<>(){{
         put("iphone", "ابل");
         put("realme", "اوبو");
         put("htc", "اتش تي سي");

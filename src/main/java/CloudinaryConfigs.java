@@ -1,5 +1,3 @@
-import com.cloudinary.Configuration;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,9 +16,7 @@ public final class CloudinaryConfigs {
         config.put("api_secret", api_secret);
         return config;
     }
-    public static String getCloudName(){
-        return configs.get(currConfig).get("cloud_name").toString();
-    }
+
     public static Map getConfig() throws Exception {
         if(currConfig >= configs.size()) throw new Exception("Configs limit exceeded");
         return configs.get(currConfig++);
