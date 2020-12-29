@@ -84,7 +84,7 @@ public class SOUQProfile extends Profile {
             Brand brand = new Brand(data[0].split(" ")[0]);
             Skin skin = MobileAndSkinData.skinsData.get(data[1]);
 
-            String images = skin.getURL() + "\n" + Dictionary.getUrl(secondFileName) + "\n" + Dictionary.getUrl(curr) + "\n"  + HOW_TO_URL + "\n";
+            String images = skin.getURL() + "\n" + Dictionary.getUrl(secondFileName) + "\n" + Dictionary.getUrl(curr) + "\n" + HOW_TO_URL + "\n";
 
             Map<Integer, String> rowData = new HashMap<>() {{
                 put(0, "517"); // Id type item
@@ -95,7 +95,7 @@ public class SOUQProfile extends Profile {
                 put(6, skin.getType()); // Type #5700
                 put(7, brand.getBrandName()); // Compatible Brands #5705
                 put(8, getScreenSizeName()); // Compatible Screen Size #6426
-                put(9, skin.getTitleAR()); // Product Title(AR) #100006
+                put(9, skin.getTitleAR() + " " + name); // Product Title(AR) #100006
                 put(10, "اوزو"); // Brand(AR) #100007
                 put(11, skin.getDescriptionAR()); // Description(AR) #100009
                 put(12, skin.getTypeAR()); // Type(AR) #105700
