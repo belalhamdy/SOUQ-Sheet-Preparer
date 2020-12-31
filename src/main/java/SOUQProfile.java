@@ -111,7 +111,7 @@ public class SOUQProfile extends Profile {
                 put(26, "99"); // Listing Price
                 put(27, "5"); // Stock Quantity
                 put(29, "C"); // Handling Time
-                put(72, "11111111111"); // External Product ID Type #6825
+                put(72, "111111111111"); // External Product ID Type #6825 (12 -> 1)
             }};
             dataForDirectory.add(rowData);
         }
