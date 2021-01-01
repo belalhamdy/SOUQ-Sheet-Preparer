@@ -1,6 +1,8 @@
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import me.tongfei.progressbar.ProgressBar;
+import me.tongfei.progressbar.ProgressBarBuilder;
+import me.tongfei.progressbar.ProgressBarStyle;
 
 import javax.swing.*;
 import java.io.File;
@@ -31,8 +33,8 @@ public final class Uploader {
 
     private static void setOptions(String folderName) throws Exception {
         try {
-            Map res = Uploader.cloudinary.api().createFolder(folderName,ObjectUtils.emptyMap());
-            if(res.get("success").equals("true")) throw new Exception();
+            Map res = Uploader.cloudinary.api().createFolder(folderName, ObjectUtils.emptyMap());
+            if (res.get("success").equals("true")) throw new Exception();
         } catch (Exception e) {
             throw new Exception("Cannot find or create the folder " + folderName);
         }
@@ -57,16 +59,19 @@ public final class Uploader {
             if (Dictionary.getUrl(path.getFileName().toString()) == null)
                 upload.add(path);
         }
-        if(upload.size() == 0)
+        if (upload.size() == 0)
             return;
         // upload the files that are not uploaded before only
-        try (ProgressBar pb = new ProgressBar("Uploading", upload.size())) {
+        try (ProgressBar pb = new ProgressBarBuilder().setTaskName("Uploading")
+                .setInitialMax(upload.size())
+                .setStyle(ProgressBarStyle.UNICODE_BLOCK)
+                .showSpeed()
+                .build()) {
             for (Path path : upload) {
                 String fileName = path.getFileName().toString();
-                if(fileName.contains(",")){
+                if (fileName.contains(",")) {
                     System.out.println("Cannot upload file " + fileName);
-                }
-                else {
+                } else {
                     Map uploadResult = uploadImage(path.toString());
                     Dictionary.add(uploadResult);
                 }
@@ -76,20 +81,20 @@ public final class Uploader {
         }
         Dictionary.closeAndSave();
     }
-    public static void UploadAll(String batchPath){
+
+    public static void UploadAll(String batchPath) {
         try {
             String batchName = new File(batchPath).getName();
             Path[] allFiles = FileUtils.getAllFilesAndSubFiles(batchPath);
             setOptions(batchName);
             uploadAllAndSaveInDictionary(allFiles);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             try {
                 System.out.println(e.getMessage());
                 e.printStackTrace();
                 Dictionary.closeAndSave();
                 System.out.println("saved");
-                JOptionPane.showMessageDialog(null,"Error");
+                JOptionPane.showMessageDialog(null, "Error");
             } catch (IOException ioException) {
                 System.out.println("Error Cannot save the dictionary.");
                 System.out.println(e.getMessage());
