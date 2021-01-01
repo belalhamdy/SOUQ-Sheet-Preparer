@@ -5,11 +5,11 @@ import org.apache.log4j.Logger;
 public class Main {
     public static void main(String[] args) {
         // Do not forget to change every comma in the uploaded data with dot
-        // TODO: in the next patches replace the TSV file with the one inside SOUQ Exce
+        // TODO: in the next patches replace the TSV file with the one inside SOUQ Excel
 
-        String sampleSOUQExcel = "S:\\work\\armor\\Skins Project\\SOUQ Excel\\SampleSOUQ.xlsx";
-        String sampleJumiaExcel = "S:\\work\\armor\\Skins Project\\SOUQ Excel\\SampleJumiaTest.xlsx";
-        String outputPath = "S:\\work\\armor\\Skins Project\\Final\\Excel Out\\Batch 5";
+        String sampleSOUQExcel = "SampleSOUQ.xlsx";
+        String sampleJumiaExcel = "SampleJumia.xlsx";
+        String outputPath = "Excel Out\\Batch 5";
         String batchPath = "S:\\work\\armor\\Skins Project\\Final\\Out\\Batch 5";
 
         Logger.getRootLogger().setLevel(Level.INFO);

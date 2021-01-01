@@ -2,9 +2,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JumiaProfile extends Profile {
+    private final String description = "<ul>\n" +
+            "    <li>OZO skins, the effective way to protect your phone back</li>\n" +
+            "    <li>High Quality material, good adhesive components, perfect texture, and no bubbles.</li>\n" +
+            "    <li>Elegant, modern and original.</li>\n" +
+            "    <li>Slim, light with perfect fit Anti-scratch Anti-fingerprint, environmentally-friendly material protects your Phone from daily scratches, dust, normal signs of wear, and danger of slipping out of hand.</li>\n" +
+            "    <li>Easy to Install According to the instruction manual, you could install it by yourself easily.</li>\n" +
+            "    <li>Easy to remove so you can change style and design.</li>\n" +
+            "    <li>This wrap leaves no sticky residue when You remove it.</li>\n" +
+            "</ul>";
+
     private Long SKU;
+
     public JumiaProfile(String batchPath, String sampleExcelPath, String outputPath, long startSKU) throws Exception {
-        super("Jumia",batchPath, sampleExcelPath, outputPath,"Upload Template");
+        super("Jumia", batchPath, sampleExcelPath, outputPath, "Upload Template");
         start_row = 1;
         SKU = startSKU;
     }
@@ -14,8 +25,8 @@ public class JumiaProfile extends Profile {
     }
 
     @Override
-    protected Map<Integer,String> getDataForRow(String firstFileName, String secondFileName, String name, Brand brand, Skin skin){
-        SKU+=1;
+    protected Map<Integer, String> getDataForRow(String firstFileName, String secondFileName, String name, Brand brand, Skin skin) {
+        SKU += 1;
         // TODO: update jumia data
         return new HashMap<>() {{
             put(0, skin.getTitleEN() + " " + name); // Name #5:SMQ
@@ -29,15 +40,17 @@ public class JumiaProfile extends Profile {
             put(17, "5"); // Quantity #253
             put(19, "0.3"); // ProductWeight #53
             put(21, "N/A"); // MainMaterial #82
-            put(24,""); // Description #16 TODO
-            put(25,""); // DescriptionArEG #243 TODO
-            put(26,""); // ShortDescription #128 TODO
-            put(27,""); // ShortDescriptionArEG #244 TODO
-            put(32,""); // Variation #436 TODO
-            put(66,skin.getURL()); // MainImage #IM1
-            put(67,Dictionary.getUrl(secondFileName)); // Image2 #IM2
-            put(68,Dictionary.getUrl(firstFileName)); // Image3 #IM3
-            put(69,HOW_TO_URL); // Image4 #IM4
+            put(24, description); // Description #16 TODO
+            put(25, description); // DescriptionArEG #243 TODO
+            put(26, description); // ShortDescription #128 TODO
+            put(27, description); // ShortDescriptionArEG #244 TODO
+            put(32, "..."); // Variation #436 TODO
+
+            put(66, skin.getURL()); // MainImage #IM1 TODO: transform first and last image to be in range 2000*2000
+            put(67, Dictionary.getUrl(secondFileName)); // Image2 #IM2
+            put(68, Dictionary.getUrl(firstFileName)); // Image3 #IM3
+            put(69, HOW_TO_URL); // Image4 #IM4
+
         }};
     }
 }
