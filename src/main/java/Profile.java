@@ -14,15 +14,17 @@ public abstract class Profile {
     protected String batchPath, sampleExcel, outputPath;
     protected static final String HOW_TO_URL = "https://res.cloudinary.com/belalhamdy/image/upload/v1609231459/Constants/How_to_jjvtkw.jpg";
     protected static final String PSDelimiter = "-";
+    protected String sheetName;
     protected int start_row = 1;
 
-    public Profile(String taskName, String batchPath, String sampleExcel, String outputPath) throws Exception {
+    public Profile(String taskName, String batchPath, String sampleExcel, String outputPath, String sheetName) throws Exception {
         outputPath += ("\\" + taskName);
 
         this.taskName = taskName;
         this.batchPath = batchPath;
         this.sampleExcel = sampleExcel;
         this.outputPath = outputPath ;
+        this.sheetName = sheetName;
 
         File directory = new File(outputPath);
         if (!directory.exists()){
@@ -42,7 +44,7 @@ public abstract class Profile {
                 .build()) {
 
             for (String dir : directories) {
-                excel = new Excel(sampleExcel, outputPath, dir, "File", start_row);
+                excel = new Excel(sampleExcel, outputPath, dir, sheetName, start_row);
                 excel.fillRows(getDataDirectory(FileUtils.getFiles(batchPath + "//" + dir)));
                 excel.saveAndClose();
                 pb.step();

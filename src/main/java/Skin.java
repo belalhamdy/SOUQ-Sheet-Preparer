@@ -32,6 +32,10 @@ public class Skin {
         this.typeAR = "ملصقات و اغطية حماية للهواتف المحمولة";
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getTitleEN() {
         return titleEN;
     }
