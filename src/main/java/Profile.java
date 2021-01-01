@@ -1,5 +1,6 @@
 import me.tongfei.progressbar.ProgressBar;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,10 +13,16 @@ public abstract class Profile {
     protected static final String PSDelimiter = "-";
     protected int start_row = 1;
 
-    public Profile(String batchPath, String sampleExcel, String outputPath) {
+    public Profile(String batchPath, String sampleExcel, String outputPath) throws Exception {
         this.batchPath = batchPath;
         this.sampleExcel = sampleExcel;
         this.outputPath = outputPath;
+
+        File directory = new File(outputPath);
+        if (!directory.exists()){
+            if(!directory.mkdirs())
+                throw new Exception("Cannot make directory for output");
+        }
     }
 
     public void run() throws Exception{

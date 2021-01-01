@@ -1,14 +1,15 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class SOUQProfile extends Profile {
-    public SOUQProfile(String batchPath, String sampleExcelPath, String outputPath) throws Exception {
-        super(batchPath, sampleExcelPath, outputPath + "\\SOUQ");
+public class JumiaProfile extends Profile {
+    public JumiaProfile(String batchPath, String sampleExcelPath, String outputPath) throws Exception {
+        super(batchPath, sampleExcelPath, outputPath + "\\Jumia");
         start_row = 1;
     }
 
     @Override
-    protected Map<Integer,String> getDataForRow(String firstFileName,String secondFileName,String name, Brand brand, Skin skin){
+    protected Map<Integer,String> getDataForRow(String firstFileName, String secondFileName, String name, Brand brand, Skin skin){
+        // TODO: update jumia data
         String images = skin.getURL() + "\n" + Dictionary.getUrl(secondFileName) + "\n" + Dictionary.getUrl(firstFileName) + "\n" + HOW_TO_URL + "\n";
 
         return new HashMap<>() {{

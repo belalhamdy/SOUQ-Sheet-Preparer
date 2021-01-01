@@ -17,11 +17,19 @@ public class Main {
         //Uploader.UploadAll(batchPath); // for uploading batch
 
         try {
-            SOUQProfile profile = new SOUQProfile(batchPath, sampleExcel, outputPath);
-            profile.run();
+            Profile souqProfile = new SOUQProfile(batchPath, sampleExcel, outputPath);
+            souqProfile.run();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error In SOUQ\n" + e.getMessage());
+            e.printStackTrace();
+        }
+        try {
+            Profile jumiaProfile = new JumiaProfile(batchPath, sampleExcel, outputPath);
+            jumiaProfile.run();
+
+        } catch (Exception e) {
+            System.out.println("Error In Jumia\n" + e.getMessage());
             e.printStackTrace();
         }
 
