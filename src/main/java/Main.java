@@ -8,7 +8,7 @@ public class Main {
         // TODO: in the next patches replace the TSV file with the one inside SOUQ Exce
 
         String sampleSOUQExcel = "S:\\work\\armor\\Skins Project\\SOUQ Excel\\SampleSOUQ.xlsx";
-        String sampleJumiaExcel = "S:\\work\\armor\\Skins Project\\SOUQ Excel\\SampleJumia.xlsx";
+        String sampleJumiaExcel = "S:\\work\\armor\\Skins Project\\SOUQ Excel\\SampleJumiaTest.xlsx";
         String outputPath = "S:\\work\\armor\\Skins Project\\Final\\Excel Out\\Batch 5";
         String batchPath = "S:\\work\\armor\\Skins Project\\Final\\Out\\Batch 5";
 
