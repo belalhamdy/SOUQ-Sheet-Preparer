@@ -1,4 +1,6 @@
 import me.tongfei.progressbar.ProgressBar;
+import me.tongfei.progressbar.ProgressBarBuilder;
+import me.tongfei.progressbar.ProgressBarStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,15 +10,19 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class Profile {
+    protected String taskName;
     protected String batchPath, sampleExcel, outputPath;
     protected static final String HOW_TO_URL = "https://res.cloudinary.com/belalhamdy/image/upload/v1609231459/Constants/How_to_jjvtkw.jpg";
     protected static final String PSDelimiter = "-";
     protected int start_row = 1;
 
-    public Profile(String batchPath, String sampleExcel, String outputPath) throws Exception {
+    public Profile(String taskName, String batchPath, String sampleExcel, String outputPath) throws Exception {
+        outputPath += ("\\" + taskName);
+
+        this.taskName = taskName;
         this.batchPath = batchPath;
         this.sampleExcel = sampleExcel;
-        this.outputPath = outputPath;
+        this.outputPath = outputPath ;
 
         File directory = new File(outputPath);
         if (!directory.exists()){
@@ -28,7 +34,13 @@ public abstract class Profile {
     public void run() throws Exception{
         List<String> directories = FileUtils.getDirectories(batchPath);
         Excel excel;
-        try (ProgressBar pb = new ProgressBar("Creating Files ", directories.size())) {
+
+        try (ProgressBar pb =new ProgressBarBuilder().setTaskName("Creating Files " + taskName)
+                .setInitialMax(directories.size())
+                .setStyle(ProgressBarStyle.UNICODE_BLOCK)
+                .showSpeed()
+                .build()) {
+
             for (String dir : directories) {
                 excel = new Excel(sampleExcel, outputPath, dir, "File", start_row);
                 excel.fillRows(getDataDirectory(FileUtils.getFiles(batchPath + "//" + dir)));

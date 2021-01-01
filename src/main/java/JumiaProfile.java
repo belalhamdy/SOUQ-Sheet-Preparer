@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class JumiaProfile extends Profile {
     public JumiaProfile(String batchPath, String sampleExcelPath, String outputPath) throws Exception {
-        super(batchPath, sampleExcelPath, outputPath + "\\Jumia");
+        super("Jumia",batchPath, sampleExcelPath, outputPath);
         start_row = 1;
     }
 

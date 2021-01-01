@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class SOUQProfile extends Profile {
     public SOUQProfile(String batchPath, String sampleExcelPath, String outputPath) throws Exception {
-        super(batchPath, sampleExcelPath, outputPath + "\\SOUQ");
+        super("SOUQ",batchPath, sampleExcelPath, outputPath);
         start_row = 1;
     }
 
