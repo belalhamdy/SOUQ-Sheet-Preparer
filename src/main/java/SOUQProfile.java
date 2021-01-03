@@ -13,14 +13,14 @@ public class SOUQProfile extends Profile {
 
         return new HashMap<>() {{
             put(0, "517"); // Id type item
-            put(2, skin.getTitleEN() + " " + name); // Product Title #6
+            put(2, skin.getTitleEN() + " " + FileUtils.toTitleCase(name)); // Product Title #6
             put(3, "OZO"); // Brand #7
             put(4, skin.getDescriptionEN()); // Description #9
             put(5, "N/A"); // Manufacturer Number #53
             put(6, skin.getType()); // Type #5700
             put(7, brand.getBrandName()); // Compatible Brands #5705
             put(8, getScreenSizeName()); // Compatible Screen Size #6426
-            put(9, skin.getTitleAR() + " " + name); // Product Title(AR) #100006
+            put(9, skin.getTitleAR() + " " + FileUtils.toTitleCase(name)); // Product Title(AR) #100006
             put(10, "اوزو"); // Brand(AR) #100007
             put(11, skin.getDescriptionAR()); // Description(AR) #100009
             put(12, skin.getTypeAR()); // Type(AR) #105700
