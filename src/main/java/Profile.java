@@ -96,7 +96,7 @@ public abstract class Profile {
          */
     }
     protected String getScreenSizeName() {
-        return "6 to 6.9 inches";
+        return "6.9 inches";
         /*
         if(val > 8.9) throw new Exception("Screen Size " + val +" is very large please review it.");
         else if(val >= 8) return "8 to 8.9 inches";
