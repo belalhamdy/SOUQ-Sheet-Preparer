@@ -27,7 +27,7 @@ public class Main {
         }
 
         // Do not forget to update the start SKU every time you produce new batch
-        long SKU = 300000;
+        long SKU = 400000;
         try {
             JumiaProfile jumiaProfile = new JumiaProfile(batchPath, sampleJumiaExcel, outputPath,SKU);
             jumiaProfile.run();

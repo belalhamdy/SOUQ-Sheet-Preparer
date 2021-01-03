@@ -27,7 +27,6 @@ public class JumiaProfile extends Profile {
     @Override
     protected Map<Integer, String> getDataForRow(String firstFileName, String secondFileName, String name, Brand brand, Skin skin) {
         SKU += 1;
-        // TODO: update jumia data
         return new HashMap<>() {{
             put(0, skin.getTitleEN() + " " + name); // Name #5:SMQ
             put(1, "OZO Skins"); // Brand #6:AAQJnA
@@ -40,13 +39,13 @@ public class JumiaProfile extends Profile {
             put(17, "5"); // Quantity #253
             put(19, "0.3"); // ProductWeight #53
             put(21, "N/A"); // MainMaterial #82
-            put(24, description); // Description #16 TODO
-            put(25, description); // DescriptionArEG #243 TODO
-            put(26, description); // ShortDescription #128 TODO
-            put(27, description); // ShortDescriptionArEG #244 TODO
-            put(32, "..."); // Variation #436 TODO
+            put(24, description); // Description #16
+            put(25, description); // DescriptionArEG #243
+            put(26, description); // ShortDescription #128
+            put(27, description); // ShortDescriptionArEG #244
+            put(32, "..."); // Variation #436
 
-            put(66, skin.getURL()); // MainImage #IM1 TODO: transform first and last image to be in range 2000*2000
+            put(66, skin.getURL()); // MainImage #IM1
             put(67, Dictionary.getUrl(secondFileName)); // Image2 #IM2
             put(68, Dictionary.getUrl(firstFileName)); // Image3 #IM3
             put(69, HOW_TO_URL); // Image4 #IM4
