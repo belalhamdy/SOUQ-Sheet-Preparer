@@ -28,12 +28,12 @@ public class JumiaProfile extends Profile {
     protected Map<Integer, String> getDataForRow(String firstFileName, String secondFileName, String name, Brand brand, Skin skin) {
         SKU += 1;
         return new HashMap<>() {{
-            put(0, skin.getTitleEN() + " " + name); // Name #5:SMQ
+            put(0, skin.getTitleEN() + " " + FileUtils.toTitleCase(name)); // Name #5:SMQ
             put(1, "OZO Skins"); // Brand #6:AAQJnA
             put(3, "1008166 - Phones & Tablets / Accessories / Cases / Stickers"); // PrimaryCategory #1
             put(7, skin.getName()); // Model #30
             put(8, "N/A"); // Color #79
-            put(9, skin.getTitleEN() + " " + name); // NameArEG #242
+            put(9, skin.getTitleEN() + " " + FileUtils.toTitleCase(name)); // NameArEG #242
             put(11, "99"); // Price #9
             put(14, SKU.toString()); // SellerSku #23
             put(17, "5"); // Quantity #253
