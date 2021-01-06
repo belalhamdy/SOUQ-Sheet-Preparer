@@ -5,12 +5,12 @@ import org.apache.log4j.Logger;
 public class Main {
     static int batchNumber = 6;
 
-    static String DictionaryPath = "Dictionaries\\Batch " + batchNumber;
+    static String DictionaryPath = "Dictionaries\\Batch " + batchNumber + ".csv";
     static String sampleSOUQExcel = "SampleSOUQ.xlsx";
     static String sampleJumiaExcel = "SampleJumia.xlsx";
     static String outputPath = "Excel Out\\Batch " + batchNumber;
     static String batchPath = "S:\\work\\armor\\Skins Project\\Final\\Out\\Batch " + batchNumber;
-    static String HowToURL = "S:\\work\\armor\\Skins Project\\Final\\Out\\Batch " + batchNumber;
+    static String HowToURL = "https://res.cloudinary.com/ozoskins/image/upload/v1609628223/Constants/How_to_zqhkcn.jpg";
     static String PSDelimiter = "-";
     static String skinsDataPath = "SkinsData.tsv";
 
@@ -21,7 +21,7 @@ public class Main {
         Logger.getRootLogger().setLevel(Level.INFO);
         BasicConfigurator.configure();
 
-        //Uploader.UploadAll(batchPath); // for uploading batch
+        Uploader.UploadAll(batchPath); // for uploading batch
 
         try {
             SOUQProfile souqProfile = new SOUQProfile(batchPath, sampleSOUQExcel, outputPath);

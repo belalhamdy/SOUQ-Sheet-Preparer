@@ -73,6 +73,8 @@ public abstract class Profile {
             String name = data[0];
             Brand brand = new Brand(data[0].split(" ")[0]);
             Skin skin = MobileAndSkinData.skinsData.get(data[1]);
+            if(skin == null)
+                throw new Exception("Error skin " + data[1] + " is not exist");
 
 
             dataForDirectory.add(getDataForRow(curr,secondFileName,name,brand,skin));

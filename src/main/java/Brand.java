@@ -7,6 +7,7 @@ public class Brand {
         put("realme", "Oppo");
         put("htc", "HTC");
 
+        put("apple", "Apple");
         put("honor", "Honor");
         put("nokia", "Nokia");
         put("oppo", "Oppo");
@@ -24,6 +25,7 @@ public class Brand {
         put("realme", "اوبو");
         put("htc", "اتش تي سي");
 
+        put("apple", "ابل");
         put("honor", "اونور");
         put("nokia", "نوكيا");
         put("oppo", "اوبو");
