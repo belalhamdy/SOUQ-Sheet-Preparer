@@ -6,7 +6,7 @@ import java.util.Map;
 
 public final class MobileAndSkinData {
     static Map<String, Skin> skinsData;
-    static String skinsDataPath = "SkinsData.tsv";
+    static String skinsDataPath = Main.skinsDataPath;
     static {
         try {
             loadSkinsData();

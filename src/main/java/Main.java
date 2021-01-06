@@ -3,14 +3,20 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 public class Main {
+    static int batchNumber = 6;
+
+    static String DictionaryPath = "Dictionaries\\Batch " + batchNumber;
+    static String sampleSOUQExcel = "SampleSOUQ.xlsx";
+    static String sampleJumiaExcel = "SampleJumia.xlsx";
+    static String outputPath = "Excel Out\\Batch " + batchNumber;
+    static String batchPath = "S:\\work\\armor\\Skins Project\\Final\\Out\\Batch " + batchNumber;
+    static String HowToURL = "S:\\work\\armor\\Skins Project\\Final\\Out\\Batch " + batchNumber;
+    static String PSDelimiter = "-";
+    static String skinsDataPath = "SkinsData.tsv";
+
     public static void main(String[] args) {
         // Do not forget to change every comma in the uploaded data with dot
-        // TODO: in the next patches replace the TSV file with the one inside SOUQ Excel
 
-        String sampleSOUQExcel = "SampleSOUQ.xlsx";
-        String sampleJumiaExcel = "SampleJumia.xlsx";
-        String outputPath = "Excel Out\\Batch 5";
-        String batchPath = "S:\\work\\armor\\Skins Project\\Final\\Out\\Batch 5";
 
         Logger.getRootLogger().setLevel(Level.INFO);
         BasicConfigurator.configure();
@@ -27,7 +33,7 @@ public class Main {
         }
 
         // Do not forget to update the start SKU every time you produce new batch
-        long SKU = 400000;
+        long SKU = 401092;
         try {
             JumiaProfile jumiaProfile = new JumiaProfile(batchPath, sampleJumiaExcel, outputPath,SKU);
             jumiaProfile.run();
