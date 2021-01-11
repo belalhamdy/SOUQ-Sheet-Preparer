@@ -15,8 +15,6 @@ public class Constants {
     static String sampleSkinsData = templatesDirectory + "\\SkinsData.tsv";
     static String skinsDataPath = skinsDataDirectory + "\\" + skinsDataFile + ".tsv";
 
-    // TODO: replace this how to
-    static String HowToURL = "https://res.cloudinary.com/ozoskins/image/upload/v1609628223/Constants/How_to_zqhkcn.jpg";
     static String PSDelimiter = "-";
     static String TSVDelimiter = "\t";
 }
