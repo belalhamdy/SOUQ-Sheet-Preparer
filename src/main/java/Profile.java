@@ -12,7 +12,6 @@ import java.util.Map;
 public abstract class Profile {
     protected String taskName;
     protected String batchPath, sampleExcel, outputPath;
-    protected static final String HOW_TO_URL = Constants.HowToURL;
     protected static final String PSDelimiter = Constants.PSDelimiter;
     protected String sheetName;
     protected int start_row = 1;
@@ -52,7 +51,7 @@ public abstract class Profile {
         }
     }
 
-    protected abstract Map<Integer,String> getDataForRow(String firstFileName,String secondFileName,String name, Brand brand, Skin skin);
+    protected abstract Map<Integer,String> getDataForRow(String firstFileName,String secondFileName,String name, Brand brand, Skin skin,String HOW_TO_URL);
     // takes list of files and returns list every item there is a map for every column and its value
     protected List<Map<Integer, String>> getDataDirectory(List<String> files) throws Exception{
         List<Map<Integer, String>> dataForDirectory = new ArrayList<>();
@@ -76,8 +75,8 @@ public abstract class Profile {
             if(skin == null)
                 throw new Exception("Error skin " + data[1] + " is not exist");
 
-
-            dataForDirectory.add(getDataForRow(curr,secondFileName,name,brand,skin));
+            String HOW_TO_URL = MobileAndSkinData.skinsData.get("HOW_TO").getURL();
+            dataForDirectory.add(getDataForRow(curr,secondFileName,name,brand,skin,HOW_TO_URL));
         }
         return dataForDirectory;
     }

@@ -8,7 +8,7 @@ public class SOUQProfile extends Profile {
     }
 
     @Override
-    protected Map<Integer,String> getDataForRow(String firstFileName,String secondFileName,String name, Brand brand, Skin skin){
+    protected Map<Integer,String> getDataForRow(String firstFileName,String secondFileName,String name, Brand brand, Skin skin,String HOW_TO_URL){
         String images = skin.getURL() + "\n" + Dictionary.getUrl(secondFileName) + "\n" + Dictionary.getUrl(firstFileName) + "\n" + HOW_TO_URL + "\n";
 
         return new HashMap<>() {{

@@ -7,7 +7,9 @@ public class Main {
     static String skinsDataFile = "ozoskins";
     // Do not forget to update the start SKU every time you produce new batch
     static long SKU = 401092;
-    static int currCloudinaryConfig = 2; // idx
+    static int skinsDataConfigIdx = 2;
+    static int uploadConfigIdx = 0;
+    static int currCloudinaryConfig = skinsDataConfigIdx; // idx
 
 
     public static void main(String[] args) {
@@ -22,8 +24,7 @@ public class Main {
             System.out.println("Error in skins data file");
             return;
         }
-
-        System.out.println(MobileAndSkinData.skinsData);
+        currCloudinaryConfig = uploadConfigIdx;
 /*
         Uploader.UploadAll(Constants.batchDirectory); // for uploading batch
 

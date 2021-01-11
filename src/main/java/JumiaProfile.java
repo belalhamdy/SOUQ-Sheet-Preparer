@@ -25,7 +25,7 @@ public class JumiaProfile extends Profile {
     }
 
     @Override
-    protected Map<Integer, String> getDataForRow(String firstFileName, String secondFileName, String name, Brand brand, Skin skin) {
+    protected Map<Integer, String> getDataForRow(String firstFileName, String secondFileName, String name, Brand brand, Skin skin,String HOW_TO_URL) {
         SKU += 1;
         return new HashMap<>() {{
             put(0, skin.getTitleEN() + " " + FileUtils.toTitleCase(name)); // Name #5:SMQ
