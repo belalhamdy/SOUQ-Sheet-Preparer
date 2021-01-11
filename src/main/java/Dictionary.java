@@ -11,7 +11,7 @@ Saves:
 original filename , secure_url, cloudName
  */
 public class Dictionary {
-    static String dictionaryPath = Main.DictionaryPath;
+    static String dictionaryPath = Constants.DictionaryPath;
     static FileWriter csvWriter;
     static Map<String, String> dictionary;
     static final int fileNameIdx = 0, linkIdx = 1;

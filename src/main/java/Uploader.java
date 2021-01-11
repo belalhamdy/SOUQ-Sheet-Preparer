@@ -27,11 +27,7 @@ public final class Uploader {
         }
     }
 
-    private static void changeConfig() throws Exception {
-        cloudinary = new Cloudinary(CloudinaryConfigs.getConfig());
-    }
-
-    private static void setOptions(String folderName) throws Exception {
+    public static void setOptions(String folderName) throws Exception {
         try {
             Map res = Uploader.cloudinary.api().createFolder(folderName, ObjectUtils.emptyMap());
             if (res.get("success").equals("true")) throw new Exception();
@@ -46,10 +42,8 @@ public final class Uploader {
         return cloudinary.config.cloudName;
     }
 
-    private static Map<String, String> uploadImage(String path) throws IOException {
-        Map uploadResult = cloudinary.uploader().upload(path, options);
-        // if it cannot upload call change config
-        return uploadResult;
+    public static Map<String, String> uploadImage(String path) throws IOException {
+        return cloudinary.uploader().upload(path, options);
     }
 
     public static void uploadAllAndSaveInDictionary(Path[] paths) throws IOException {

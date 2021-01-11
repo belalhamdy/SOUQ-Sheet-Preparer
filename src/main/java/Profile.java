@@ -12,8 +12,8 @@ import java.util.Map;
 public abstract class Profile {
     protected String taskName;
     protected String batchPath, sampleExcel, outputPath;
-    protected static final String HOW_TO_URL = Main.HowToURL;
-    protected static final String PSDelimiter = Main.PSDelimiter;
+    protected static final String HOW_TO_URL = Constants.HowToURL;
+    protected static final String PSDelimiter = Constants.PSDelimiter;
     protected String sheetName;
     protected int start_row = 1;
 

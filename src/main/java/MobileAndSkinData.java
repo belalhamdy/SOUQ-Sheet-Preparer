@@ -6,7 +6,7 @@ import java.util.Map;
 
 public final class MobileAndSkinData {
     static Map<String, Skin> skinsData;
-    static String skinsDataPath = Main.skinsDataPath;
+    static String skinsDataPath = Constants.skinsDataPath;
     static {
         try {
             loadSkinsData();
@@ -16,7 +16,7 @@ public final class MobileAndSkinData {
     }
     private static void loadSkinsData() throws IOException {
         BufferedReader tsvReader = new BufferedReader(new FileReader(skinsDataPath));
-        String delimiter = "\t";
+        String delimiter = Constants.TSVDelimiter;
         skinsData = new HashMap<>();
         String row;
         while ((row = tsvReader.readLine()) != null) {
