@@ -6,14 +6,15 @@ import java.util.Map;
 @SuppressWarnings("rawtypes")
 public final class CloudinaryConfigs {
     private static final List<Map> configs = new ArrayList<>() {{
-        add(generateConfig("belalhamdy", "222965862679467", "4Umi23WOzm72bAMMJxPYac2rBZk"));
-        add(generateConfig("ozoskins1", "373114824266665", "xpHOGT7bOj-v3kI0tqgWM1x6MZc"));
-
-        /*-------------------------
+        /*
         For Skins data
          */
         add(generateConfig("ozoskins", "927622871781775", "i7PmM4-w6dzIvyAEQoDvtTdZwQ4"));
         add(generateConfig("ozoskins2", "358333887259691", "4KTsWlPVHQpYb-WYhwqCkgdvnbk"));
+        //-----------------------------------
+        add(generateConfig("belalhamdy", "222965862679467", "4Umi23WOzm72bAMMJxPYac2rBZk"));
+        add(generateConfig("ozoskins1", "373114824266665", "xpHOGT7bOj-v3kI0tqgWM1x6MZc"));
+
     }};
     private static Map generateConfig(String cloud_name, String api_key,String api_secret ){
         Map<String,String> config = new HashMap<>();

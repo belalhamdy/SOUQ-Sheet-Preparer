@@ -4,11 +4,13 @@ import org.apache.log4j.Logger;
 
 public class Main {
     static String batchId = "6";
-    static String skinsDataFile = "ozoskins";
     // Do not forget to update the start SKU every time you produce new batch
     static long SKU = 401092;
-    static int skinsDataConfigIdx = 2;
-    static int uploadConfigIdx = 0;
+    // Update these 2 values together
+    static String skinsDataFile = "ozoskins1";
+    static int skinsDataConfigIdx = 1; // idx in range [0,2]
+
+    static int uploadConfigIdx = 2; // idx in range [2,[
     static int currCloudinaryConfig = skinsDataConfigIdx; // idx
 
 
