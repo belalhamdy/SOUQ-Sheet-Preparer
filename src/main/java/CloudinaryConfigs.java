@@ -14,6 +14,7 @@ public final class CloudinaryConfigs {
         //-----------------------------------
         add(generateConfig("belalhamdy", "222965862679467", "4Umi23WOzm72bAMMJxPYac2rBZk"));
         add(generateConfig("ozoskins1", "373114824266665", "xpHOGT7bOj-v3kI0tqgWM1x6MZc"));
+        add(generateConfig("ozoskins3", "384664294248424", "j7pbnG8fOiB2VOcHamuEi9XeFlA"));
 
     }};
     private static Map generateConfig(String cloud_name, String api_key,String api_secret ){

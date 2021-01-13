@@ -10,7 +10,7 @@ public class Main {
     static String skinsDataFile = "ozoskins1";
     static int skinsDataConfigIdx = 1; // idx in range [0,2]
 
-    static int uploadConfigIdx = 2; // idx in range [2,[
+    static int uploadConfigIdx = 4; // idx in range [2,[
     static int currCloudinaryConfig = skinsDataConfigIdx; // idx
 
 
@@ -21,13 +21,15 @@ public class Main {
         Logger.getRootLogger().setLevel(Level.INFO);
         BasicConfigurator.configure();
 
-
+/*
         if(!SkinsDataManager.validateSkinsData()){
             System.out.println("Error in skins data file");
             return;
         }
+
+ */
         currCloudinaryConfig = uploadConfigIdx;
-/*
+
         Uploader.UploadAll(Constants.batchDirectory); // for uploading batch
 
         try {
@@ -50,7 +52,7 @@ public class Main {
             e.printStackTrace();
             return;
         }
-*/
+
     }
 }
 /*
