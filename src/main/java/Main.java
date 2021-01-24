@@ -8,9 +8,9 @@ public class Main {
     static long SKU = 401092;
     // Update these 2 values together
     static String skinsDataFile = "ozoskins1";
-    static int skinsDataConfigIdx = 1; // idx in range [0,2]
+    static int skinsDataConfigIdx = 0; // idx in range [0,2]
 
-    static int uploadConfigIdx = 4; // idx in range [2,[
+    static int uploadConfigIdx = 2; // idx in range [2,[
     static int currCloudinaryConfig = skinsDataConfigIdx; // idx
 
 

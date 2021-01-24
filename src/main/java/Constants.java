@@ -3,7 +3,8 @@ public class Constants {
     static String skinsDataFile = Main.skinsDataFile;
 
 
-    static String batchDirectory = "E:\\Work\\Armor\\Out\\Batch " + batchId;
+//    static String batchDirectory = "E:\\Work\\Armor\\Out\\Batch " + batchId;
+    static String batchDirectory = "S:\\work\\armor\\Skins Project\\Final\\Out\\Batch " + batchId;
     static String outputDirectory = "Excel Out\\Batch " + batchId;
     static String templatesDirectory = "Templates";
     static String skinsDataDirectory = "SkinsData";

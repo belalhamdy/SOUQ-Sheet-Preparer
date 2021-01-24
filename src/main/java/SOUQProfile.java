@@ -21,6 +21,31 @@ public class SOUQProfile extends Profile {
             put(7, brand.getBrandName()); // Compatible Brands #5705
             put(8, getScreenSizeName()); // Compatible Screen Size #6426
             put(9, skin.getTitleAR() + " " + FileUtils.toTitleCase(name)); // Product Title(AR) #100006
+            put(10, skin.getDescriptionAR()); // Description(AR) #100009
+            put(11, "0"); // Are batteries needed to power the product or is this product a battery(AR) #106745
+            put(12, "0"); // Are batteries needed to power the product or is this product a battery #6745
+            put(13, "NO"); // Is this a Dangerous Good or a Hazardous Material, Substance or Waste that is regulated for transportation, storage, and/or disposal? #6746
+            put(14, "NO"); // Is this a Dangerous Good or a Hazardous Material, Substance or Waste that is regulated for transportation, storage, and/or disposal?(AR) #106746
+            put(16, images); // Images
+            put(19, "iqshop"); // Seller Username
+            put(21, "YES"); // Active
+            put(22, "99"); // Listing Price
+            put(23, "5"); // Stock Quantity
+            put(25, "C"); // Handling Time
+            put(79, "111111111111"); // External Product ID Type #6825 (12 -> 1)
+        }};
+    }
+    /* OLD
+            return new HashMap<>() {{
+            put(0, "517"); // Id type item
+            put(2, skin.getTitleEN() + " " + FileUtils.toTitleCase(name)); // Product Title #6
+            put(3, "OZO"); // Brand #7
+            put(4, skin.getDescriptionEN()); // Description #9
+            put(5, "N/A"); // Manufacturer Number #53
+            put(6, skin.getType()); // Type #5700
+            put(7, brand.getBrandName()); // Compatible Brands #5705
+            put(8, getScreenSizeName()); // Compatible Screen Size #6426
+            put(9, skin.getTitleAR() + " " + FileUtils.toTitleCase(name)); // Product Title(AR) #100006
             put(10, "اوزو"); // Brand(AR) #100007
             put(11, skin.getDescriptionAR()); // Description(AR) #100009
             put(12, skin.getTypeAR()); // Type(AR) #105700
@@ -38,5 +63,5 @@ public class SOUQProfile extends Profile {
             put(29, "C"); // Handling Time
             put(72, "111111111111"); // External Product ID Type #6825 (12 -> 1)
         }};
-    }
+     */
 }

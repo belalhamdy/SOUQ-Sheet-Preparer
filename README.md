@@ -3,4 +3,4 @@
 
 # Notes
 * save the skins data with special delimiter rather than ',' because comma is used inside the values like TSV.
-* Jumia last SKU: `404050`
+* Jumia last SKU: `406855`
