@@ -21,18 +21,22 @@ public class SOUQProfile extends Profile {
             put(7, brand.getBrandName()); // Compatible Brands #5705
             put(8, getScreenSizeName()); // Compatible Screen Size #6426
             put(9, skin.getTitleAR() + " " + FileUtils.toTitleCase(name)); // Product Title(AR) #100006
-            put(10, skin.getDescriptionAR()); // Description(AR) #100009
-            put(11, "0"); // Are batteries needed to power the product or is this product a battery(AR) #106745
-            put(12, "0"); // Are batteries needed to power the product or is this product a battery #6745
-            put(13, "NO"); // Is this a Dangerous Good or a Hazardous Material, Substance or Waste that is regulated for transportation, storage, and/or disposal? #6746
-            put(14, "NO"); // Is this a Dangerous Good or a Hazardous Material, Substance or Waste that is regulated for transportation, storage, and/or disposal?(AR) #106746
-            put(16, images); // Images
-            put(19, "iqshop"); // Seller Username
-            put(21, "YES"); // Active
-            put(22, "99"); // Listing Price
-            put(23, "5"); // Stock Quantity
-            put(25, "C"); // Handling Time
-            put(79, "111111111111"); // External Product ID Type #6825 (12 -> 1)
+            put(10, "اوزو"); // Brand(AR) #100007
+            put(11, skin.getDescriptionAR()); // Description(AR) #100009
+            put(12, skin.getTypeAR()); // Type(AR) #105700
+            put(13, brand.getBrandNameAR()); // Compatible Brands(AR) #105705
+            put(14, getScreenSizeNameAR()); // Compatible Screen Size(AR) #106426
+            put(15, "0"); // Are batteries needed to power the product or is this product a battery(AR) #106745
+            put(16, "0"); // Are batteries needed to power the product or is this product a battery #6745
+            put(17, "NO"); // Is this a Dangerous Good or a Hazardous Material, Substance or Waste that is regulated for transportation, storage, and/or disposal? #6746
+            put(18, "NO"); // Is this a Dangerous Good or a Hazardous Material, Substance or Waste that is regulated for transportation, storage, and/or disposal?(AR) #106746
+            put(20, images); // Images
+            put(23, "iqshop"); // Seller Username
+            put(25, "YES"); // Active
+            put(26, "99"); // Listing Price
+            put(27, "5"); // Stock Quantity
+            put(29, "C"); // Handling Time
+            put(72, "111111111111"); // External Product ID Type #6825 (12 -> 1)
         }};
     }
     /* OLD

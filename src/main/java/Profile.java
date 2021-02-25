@@ -13,6 +13,7 @@ public abstract class Profile {
     protected String taskName;
     protected String batchPath, sampleExcel, outputPath;
     protected static final String PSDelimiter = Constants.PSDelimiter;
+    protected static final String combinedFilename = "batch " + Constants.batchId + " combined";
     protected String sheetName;
     protected int start_row = 1;
 
@@ -34,7 +35,7 @@ public abstract class Profile {
 
     public void run() throws Exception{
         List<String> directories = FileUtils.getDirectories(batchPath);
-        Excel excel;
+        Excel excel = new Excel(sampleExcel,outputPath,combinedFilename,sheetName,start_row);
 
         try (ProgressBar pb =new ProgressBarBuilder().setTaskName("Creating Files " + taskName)
                 .setInitialMax(directories.size())
@@ -43,11 +44,14 @@ public abstract class Profile {
                 .build()) {
 
             for (String dir : directories) {
-                excel = new Excel(sampleExcel, outputPath, dir, sheetName, start_row);
+                if(!Constants.allInOneFile)
+                    excel = new Excel(sampleExcel, outputPath, dir, sheetName, start_row);
                 excel.fillRows(getDataDirectory(FileUtils.getFiles(batchPath + "//" + dir)));
-                excel.saveAndClose();
+                if(!Constants.allInOneFile)
+                    excel.saveAndClose();
                 pb.step();
             }
+            excel.saveAndClose();
         }
     }
 

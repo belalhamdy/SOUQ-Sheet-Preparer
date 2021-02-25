@@ -18,4 +18,6 @@ public class Constants {
 
     static String PSDelimiter = "-";
     static String TSVDelimiter = "\t";
+
+    static boolean allInOneFile = true;
 }
